@@ -1,4 +1,4 @@
-# Determine is a string is a permutation of a palindrome.
+# Determine if a string is a permutation of a palindrome.
 # NB: I assume case insensitivity
 
 def isPalPerm(string):
