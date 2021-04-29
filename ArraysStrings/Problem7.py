@@ -11,7 +11,6 @@ import random
 def rotate_matrix(matrix):
 
     rows = len(matrix)
-
     for row in range(rows):
         for col in range(row, rows - row - 1):
             u = matrix[row][col]
@@ -25,8 +24,6 @@ def rotate_matrix(matrix):
             matrix[col][rows - 1 - row] = u
 
     return
-
-
 
 
 def main():
@@ -47,8 +44,6 @@ def main():
     print("Original matrix: ", mat)
     rotate_matrix(mat)
     print("Rotated matrix: ", mat)
-
-
 
 
 if __name__ == "__main__":
