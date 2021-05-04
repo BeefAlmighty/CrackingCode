@@ -47,7 +47,28 @@ def remove_duplicates_buffer(linked_list):
 
 
 def remove_duplicates(linked_list):
-    pass
+    # Idea is as follows : Beginning with head of the list,
+    # move through the list and remove any node that matches the head item
+    # then apply this process to head's next node.
+
+    if linked_list.head.next is None:
+        return
+
+    front = linked_list.head
+    runner = linked_list.head
+
+    while front.next:
+        if runner.next is not None:
+            runner = runner.next
+            if runner.item == front.item:
+                remove_node(runner, linked_list)
+                runner = front
+        else:
+            front = front.next
+            runner = front
+
+    return
+
 
 
 def main():
@@ -69,43 +90,61 @@ def main():
     print("Before : ", linked_list)
     remove_duplicates_buffer(linked_list)
     print("After : ", linked_list)
+    linked_list.make_from_list([2, 3, 4, 5])
+    print("Before : ", linked_list)
+    remove_duplicates_buffer(linked_list)
     remove_duplicates(linked_list)
-    print("After : ", linked_list)
+    print("After No Buffer: ", linked_list)
 
     linked_list.make_from_list([2, 3, 4, 2])
     print("Before : ", linked_list)
     remove_duplicates_buffer(linked_list)
     print("After : ", linked_list)
+    linked_list.make_from_list([2, 3, 4, 2])
+    print("Before : ", linked_list)
+    remove_duplicates_buffer(linked_list)
     remove_duplicates(linked_list)
-    print("After : ", linked_list)
+    print("After No Buffer: ", linked_list)
 
     linked_list.make_from_list([2, 2, 2, 2])
     print("Before : ", linked_list)
     remove_duplicates_buffer(linked_list)
     print("After : ", linked_list)
+    linked_list.make_from_list([2, 2, 2, 2])
+    print("Before : ", linked_list)
+    remove_duplicates_buffer(linked_list)
     remove_duplicates(linked_list)
-    print("After : ", linked_list)
+    print("After No Buffer: ", linked_list)
 
     linked_list.make_from_list([2, 3, 2, 3])
     print("Before : ", linked_list)
     remove_duplicates_buffer(linked_list)
     print("After : ", linked_list)
+    linked_list.make_from_list([2, 3, 2, 3])
+    print("Before : ", linked_list)
+    remove_duplicates_buffer(linked_list)
     remove_duplicates(linked_list)
-    print("After : ", linked_list)
+    print("After No Buffer: ", linked_list)
 
     linked_list.make_from_list([12, 3, -4, 15, -4])
     print("Before : ", linked_list)
     remove_duplicates_buffer(linked_list)
     print("After : ", linked_list)
+    linked_list.make_from_list([12, 3, -4, 15, -4])
+    print("Before : ", linked_list)
+    remove_duplicates_buffer(linked_list)
     remove_duplicates(linked_list)
-    print("After : ", linked_list)
+    print("After No Buffer: ", linked_list)
 
     linked_list.make_from_list([12])
     print("Before : ", linked_list)
     remove_duplicates_buffer(linked_list)
     print("After : ", linked_list)
+    linked_list.make_from_list([12])
+    print("Before : ", linked_list)
+    remove_duplicates_buffer(linked_list)
     remove_duplicates(linked_list)
-    print("After : ", linked_list)
+    print("After No Buffer: ", linked_list)
 
 
 if __name__ == "__main__":

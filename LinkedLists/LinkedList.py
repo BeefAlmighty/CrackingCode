@@ -14,6 +14,21 @@ class LinkedList:
         ans += " --> [ X ]"
         return ans
 
+    def __eq__(self, other):
+        temp = self.head
+        temp_2 = other.head
+        while temp and temp_2:
+            if temp != temp_2:
+                return False
+            temp = temp.next
+            temp_2 = temp_2.next
+        if temp is None and temp_2 is not None:
+            return False
+        elif temp is not None and temp_2 is None:
+            return False
+        else:
+            return True
+
     def make_from_list(self, ls):
         """
         Helper for doing testing, makes a singly linked list object from
@@ -33,7 +48,13 @@ class LinkedList:
 
         return
 
-
+    def __len__(self):
+        temp = self.head
+        ans = 0
+        while temp:
+            ans += 1
+            temp = temp.next
+        return ans
 
 
 class Node:
@@ -63,6 +84,8 @@ def main():
     linked_list = LinkedList()
     linked_list.make_from_list([1, 2, 3])
     print(linked_list)
+
+    print(len(linked_list))
 
 if __name__ == "__main__":
     main()
