@@ -155,9 +155,34 @@ def mergesort(ls, comp):
     mergesort_helper(ls, 0, len(ls) - 1, comp)
     return
 
+def partition(ls, left, right, comp):
+    # Partition, up to and including the end point right.
+    lower = left - 1
+    upper = lower + 1
+    pivot = ls[right]
+    while upper < right:
+        if comp(pivot, ls[upper]):
+            upper += 1
+        else:
+            lower += 1
+            swap(ls, lower, upper)
+            upper += 1
+    lower += 1
+    swap(ls, lower, right)
+    return lower
+
+
+def quicksort_helper(ls, left, right, comp=less):
+    if left >= right:
+        return
+    pivot = partition(ls, left, right, comp)
+    quicksort_helper(ls, left, pivot - 1, comp)
+    quicksort_helper(ls, pivot + 1, right, comp)
+    return
 
 def quicksort(ls, comp):
-    pass
+    quicksort_helper(ls, 0, len(ls) - 1, comp)
+    return
 
 
 def main():
@@ -209,17 +234,17 @@ def main():
     sort(inp, kind="merge")
     assert inp == sorted([1, 2, 3, 4, 5])
 
-    # inp = [4, 3, 1, 5, 6, 9, 4]
-    # quicksort(inp, more)
-    # assert inp == sorted([4, 3, 1, 5, 6, 9, 4], reverse=True)
-    #
-    # inp = [5, 4, 3, 2, 1]
-    # quicksort(inp, less)
-    # assert inp == sorted([5, 4, 3, 2, 1])
-    #
-    # inp = [1, 2, 3, 4, 5]
-    # sort(inp, kind="qsort")
-    # assert inp == sorted([1, 2, 3, 4, 5])
+    inp = [4, 3, 1, 5, 6, 9, 4]
+    quicksort(inp, more)
+    assert inp == sorted([4, 3, 1, 5, 6, 9, 4], reverse=True)
+
+    inp = [5, 4, 3, 2, 1]
+    quicksort(inp, less)
+    assert inp == sorted([5, 4, 3, 2, 1])
+
+    inp = [1, 2, 3, 4, 5]
+    sort(inp, kind="qsort")
+    assert inp == sorted([1, 2, 3, 4, 5])
 
 
 if __name__ == "__main__":
